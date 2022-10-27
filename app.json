@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "busses",
+    "slug": "busses",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#e63c4b"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.engahmed.busses",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.codewithahmed.busses",
+      "versionCode": 1
+    },
+    "description": "في حافل نقوم بربط مجموعات التوثيل (الحافلات) مع الطالبات الجامعيات لتسهيل عملية النقل, زيادة الكفاءة والدقة في المواعيد, واضافة خيارات التحديل والإلغاء للعميل.",
+    "notification": {
+      "iosDisplayInForeground": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "84c38490-545a-4656-8428-b4523980d8ee"
+      }
+    }
+  }
+}
