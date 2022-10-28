@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, View, FlatList, Alert } from "react-native";
+import { StyleSheet, View, FlatList, Alert, Platform } from "react-native";
 
 import ActivityIndicator from "../components/ActivityIndicator";
 import colors from "../config/colors";
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
     alignContent: "center",
     margin: 10,
-    marginTop: -10,
+    marginTop: Platform.OS === "android" ? -15 : 5,
   },
   screen2: {
     backgroundColor: colors.light,

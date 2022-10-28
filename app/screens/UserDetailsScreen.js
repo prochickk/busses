@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   Screen: {
     backgroundColor: colors.light,
     marginVertical: -30,
-    marginTop: Platform.OS === "android" ? -25 : 5,
+    marginTop: Platform.OS === "android" ? -15 : 5,
   },
   detailsContainer: {
     padding: 20,

@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
@@ -29,7 +29,12 @@
     },
     "android": {
       "package": "com.codewithahmed.busses",
-      "versionCode": 1
+      "versionCode": 6,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBfnWXxm0Cgfp8b0aJBTBDeqhTgXujT6CY"
+        }
+      }
     },
     "description": "في حافل نقوم بربط مجموعات التوثيل (الحافلات) مع الطالبات الجامعيات لتسهيل عملية النقل, زيادة الكفاءة والدقة في المواعيد, واضافة خيارات التحديل والإلغاء للعميل.",
     "notification": {

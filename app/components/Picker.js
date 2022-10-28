@@ -23,6 +23,7 @@ function AppPicker({
   placeholder,
   selectedItem,
   width = "80%",
+  onDonee
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 

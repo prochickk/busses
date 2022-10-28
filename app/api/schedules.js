@@ -8,7 +8,7 @@ export const addSchedule = (schedule, onUploadProgress) => {
   const data = new FormData();
   data.append("typeCateLabel", schedule.typeCate.label);
   data.append("dayCateLabel", schedule.dayCate.label);
-  data.append("timeCateLabel", schedule.timeCate.label);
+  data.append("timeCateLabel", schedule.timeCate.value);
   data.append("addressCateId", schedule.addressCate.idAddress);
   data.append("group", schedule.user.group);
   data.append("useId", schedule.user.userId);

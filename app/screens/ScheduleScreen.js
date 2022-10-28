@@ -37,11 +37,7 @@ function ScheduleScreen( {navigation} ) {
 
   const handleDelete = async (schedule) => {
     setProgress(0);
-    setUploadVisible(true);
-
-    console.log("scheduleScreen", schedule)
-    
-    
+    setUploadVisible(true);    
     const result = await schedulesApi.deleteSchedule(
       { ...schedule },
       (progress) => setProgress(progress)
@@ -97,6 +93,9 @@ function ScheduleScreen( {navigation} ) {
                 refreshing={refreshing}
                 onRefresh={() => getSchedulesApi.request({...user})}
             />
+            <View style={styles.BottomText}>
+              <AppText>جميع العناصر في هذه الصفحة خاصة بك ولن يمكن لكابتن {user.group} رؤيتها </AppText>
+            </View>
           </View> 
       </Screen>
     </>
@@ -139,9 +138,12 @@ const styles = StyleSheet.create({
     screen: {
       padding: 20,
       backgroundColor: colors.light,
-      marginBottom: 50,
+      marginBottom: 80,
       marginTop: -30,
-
+    },
+    BottomText: {
+      padding: 10,
+     
     },
 });
  

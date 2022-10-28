@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
 
 import {
@@ -14,6 +14,7 @@ import UploadScreen from "./UploadScreen";
 import colors from "../config/colors";
 import routes from "../navigation/routes";
 import addressesApi from '../api/addresses';
+import timesApi from '../api/times';
 import useApi from "../hooks/useApi";
 import AuthContext from "../auth/context";
 import AppButton from "../components/Button";
@@ -71,12 +72,11 @@ const timeCates = [
     icon: "timer-outline",
     label: "7:00-7:50",
   },
-
   {
     backgroundColor: colors.dark,
     icon: "timer",
     label: "6:00-6:50",
-  }, 
+  },
 ]
 
 const dayCates = [
@@ -104,15 +104,19 @@ const dayCates = [
 
 function ScheduleAddScreen({ navigation }) {
 
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const { user } = useContext(AuthContext);
+
   const getAddressesApi = useApi(addressesApi.getAddresses);
+  const getTimesApi = useApi(timesApi.getTimes);
 
   useEffect(() => {
     getAddressesApi.request( {...user});
   }, []);
-  
-  const [uploadVisible, setUploadVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    getTimesApi.request("go");
+  }, []);
   
   const handleSubmit = async (schedule, { resetForm }) => {
     setProgress(0);
@@ -121,12 +125,12 @@ function ScheduleAddScreen({ navigation }) {
       {...schedule, user},
       (progress) => setProgress(progress)
       );
-
-    if (!result.ok) {
-      setUploadVisible(false);
+      
+      if (!result.ok) {
+        setUploadVisible(false);
       return alert("Could not save the schedule");
     }
-
+    
     resetForm();
     navigation.navigate(routes.SCHEDULE)
   };
@@ -155,9 +159,9 @@ function ScheduleAddScreen({ navigation }) {
           PickerItemComponent={CategoryPickerItem}
           placeholder= "نــوع الرحــلة"
           width="55%"
-        />
+          />
         <Picker
-          items={timeCates}
+          items={getTimesApi.data}
           name="timeCate"
           numberOfColumns={1}
           PickerItemComponent={CategoryPickerItem}
@@ -185,7 +189,7 @@ function ScheduleAddScreen({ navigation }) {
           </View>
           <View style={{flex:1}}/>
           <AppButton width="30%" title={"إضافة موقع"} height={50}
-          onPress={() => {navigation.navigate( routes.ADDRESS), getAddressesApi.request({...user})}}/>
+          onPress={() => {getAddressesApi.request({...user}), navigation.navigate( routes.ADDRESS)}}/>
         </View>
 
         <SubmitButton title="إرسـال الرحـلـة للـجـدول " />
@@ -197,7 +201,7 @@ function ScheduleAddScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    marginTop: Platform.OS === "android" ? -25 : 5,
+    marginTop: Platform.OS === "android" ? -15 : 5,
   },
   AddressView: {
     flexDirection: 'row',
