@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "busses",
-    "slug": "busses",
+    "name": "Hafel",
+    "slug": "Hafel",
     "platforms": [
       "ios",
       "android",
@@ -24,12 +24,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.engahmed.busses",
+      "bundleIdentifier": "com.engahmed.hafel",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "com.codewithahmed.busses",
-      "versionCode": 6,
+      "package": "com.codewithahmed.hafel",
+      "versionCode": 7,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBfnWXxm0Cgfp8b0aJBTBDeqhTgXujT6CY"

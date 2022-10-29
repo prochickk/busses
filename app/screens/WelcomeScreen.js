@@ -14,7 +14,6 @@ function WelcomeScreen({ navigation }) {
     >
       <View style={styles.logoContainer}>
         <Image style={styles.logo} source={require("../assets/logo-red.png")} />
-        <AppText style={styles.tagline}>حــافــل</AppText>
       </View>
       <View style={styles.buttonsContainer}>
         <Button
