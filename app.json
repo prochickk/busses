@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Hafel",
-    "slug": "Hafel",
+    "name": "busses",
+    "slug": "busses",
     "platforms": [
       "ios",
       "android",

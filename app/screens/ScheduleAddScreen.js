@@ -159,6 +159,7 @@ function ScheduleAddScreen({ navigation }) {
           PickerItemComponent={CategoryPickerItem}
           placeholder= "نــوع الرحــلة"
           width="55%"
+          // onSelectItem = {(item) => console.log("typecate selected item ScheAddSCre",item)} 
           />
         <Picker
           items={getTimesApi.data}
@@ -189,7 +190,7 @@ function ScheduleAddScreen({ navigation }) {
           </View>
           <View style={{flex:1}}/>
           <AppButton width="30%" title={"إضافة موقع"} height={50}
-          onPress={() => {getAddressesApi.request({...user}), navigation.navigate( routes.ADDRESS)}}/>
+          onPress={() => {navigation.navigate( routes.ADDRESS), console.log("addressesssss ScheduleAddScreen",getAddressesApi.data),getAddressesApi.request({...user})}}/>
         </View>
 
         <SubmitButton title="إرسـال الرحـلـة للـجـدول " />

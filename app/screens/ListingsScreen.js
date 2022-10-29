@@ -60,35 +60,29 @@ function ListingsScreen({ navigation }) {
       <ActivityIndicator visible={getListingsApi.loading} />
       <Screen style={styles.screen}>
 
-        <View>
           <AppText style={styles.title}>رحـلات هـذا الأسـبـوع</AppText>
-        </View>
-    
-        <View style={{flexDirection: "row", width: "100%", justifyContent: 'center', alignItems: "center",}}>
-          <View style={{flex:1}}/>
-          <View style={{marginBottom: 10, width: "15%"}}>
+
+        <View style={styles.filterButtons}>
           <IconButton 
               name={"refresh"}
               onPress= {() => getListingsApi.request([day ,{...user}])}
               />
+          <View style={{flexDirection: "row"}}>
+            <IconPicker 
+              icon={"filter"}
+              items={days}
+              name="goBackItem"
+              numberOfColumns={1}
+              PickerItemComponent={CategoryPickerItem}
+              placeholder="أقرب منصطقة لموقعك"
+              onSelectItem={(item) => {setTextDay(item.label) ,setDay(item.label)}}
+              />
+            { {textDay} && <View style={styles.Days}>
+            <AppText>{textDay}</AppText>
+            </View>}  
           </View>
-        <View style={{marginHorizontal: 25, alignItems: "center", marginTop: 10,}}>
-          <IconPicker 
-            icon={"filter"}
-            items={days}
-            name="goBackItem"
-            numberOfColumns={1}
-            PickerItemComponent={CategoryPickerItem}
-            placeholder="أقرب منصطقة لموقعك"
-            onSelectItem={(item) => {setTextDay(item.label) ,setDay(item.label)}}
-            />
-          { {textDay} && <View style={styles.Days}>
-          <AppText>{textDay}</AppText>
-          </View>}
-        </View>
-        </View>
 
-
+        </View>
 
         {getListingsApi.error && (
           <>
@@ -113,12 +107,11 @@ function ListingsScreen({ navigation }) {
                      }}
                 />
                 )}
-
               refreshing={refreshing}
               onRefresh={() => getListingsApi.request([day ,{...user}])}
         />
         <View>
-          <AppText>جميع العناصر في هذه الصفحة يمكن لكابتن {user.group} الاطلاع عليها</AppText>
+          <AppText>يمكن لكابتن {user.group} الاطلاع على جميع العناصر في هذه الصفحة</AppText>
         </View>
       </Screen>
     </>
@@ -129,15 +122,7 @@ const styles = StyleSheet.create({
   screen: {
     padding: 20,
     backgroundColor: colors.light,
-  },
-  OneTripView: {
-    marginTop:20,
-    width: "100%",
-    height: 150,
-    backgroundColor: colors.medium,
-    borderRadius: 20,
-    marginBottom: 20,
-    alignItems: "center"
+    alignContent: "center",
   },
   title: {
     backgroundColor: colors.light,
@@ -145,22 +130,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     fontSize: 30,
-    marginBottom: 30,
-
+    marginBottom: 10,
   },
   Days: {
-    marginTop: 5,
+    marginHorizontal: 30,
     textAlign: 'right',
     backgroundColor: colors.light,
-    paddingHorizontal: 0,
+    marginTop: 10,
   },
-  OneTripText: {
-    margin: 10,
-    backgroundColor: colors.white,
-    marginBottom: 60,
-  },
-  tripMakingBtn: {
-    width: "80%",
+  filterButtons: {
+    flexDirection: "row-reverse",
+    width: "100%",
+    justifyContent: 'center',
+    alignItems:'center',
+    marginHorizontal: 80
   },
 });
 

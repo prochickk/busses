@@ -23,7 +23,6 @@ function AppPicker({
   placeholder,
   selectedItem,
   width = "80%",
-  onDonee
 }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -39,8 +38,13 @@ function AppPicker({
               style={styles.icon}
             />
           )}
-          {selectedItem ? (
-            <Text style={styles.text}>{selectedItem.label}</Text>
+          {selectedItem ? ( 
+            selectedItem.label ?
+              <Text style={styles.text}>{selectedItem.label}</Text> : ( 
+              selectedItem.name ? 
+              <Text style={styles.text}>{selectedItem.name}</Text> :
+              <Text style={styles.text}>{selectedItem.value}</Text>
+            )
           ) : (
             <Text style={styles.placeholder}>{placeholder}</Text>
           )}

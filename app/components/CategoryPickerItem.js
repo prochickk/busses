@@ -15,7 +15,7 @@ function CategoryPickerItem({ item, onPress }) {
         />}
         <View style={{flexDirection: "row-reverse", marginHorizontal: 15,}}>
           { (item.label) && <Text style={styles.label}>{item.label}</Text>}
-          { (item.name) &&<Text style={styles.label}>{item.name}</Text> }
+          { (item.name) && <Text style={styles.label}>{item.name}</Text> }
           { (item.value) &&<Text style={styles.label}>{item.value}</Text> }
           { (item.groupList) &&<Text style={styles.label}>{item.groupList}</Text> }
           {(item.region) && <View style={{flex: 1}}/>}
