@@ -10,7 +10,6 @@ import Screen from "../components/Screen";
 import AppText from "../components/Text";
 import useApi from "../hooks/useApi";
 import AuthContext from "../auth/context";
-import AppButton from "../components/Button";
 import IconButton from "../components/IconButton";
 import IconPicker from "../components/IconPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, TouchableOpacity  } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
+import routes from '../navigation/routes'
 import {
   ErrorMessage,
   Form,
@@ -11,13 +12,14 @@ import {
 } from "../components/forms";
 import authApi from "../api/auth";
 import useAuth from "../auth/useAuth";
+import AppText from "../components/Text";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-function LoginScreen(props) {
+function LoginScreen({ navigation }) {
   const auth = useAuth();
   const [loginFailed, setLoginFailed] = useState(false);
 
@@ -33,7 +35,7 @@ function LoginScreen(props) {
       <Image style={styles.logo} source={require("../assets/logo-red.png")} />
 
       <Form
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: "", password: ""}}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -47,7 +49,7 @@ function LoginScreen(props) {
           icon="email"
           keyboardType="email-address"
           name="email"
-          placeholder="Email"
+          placeholder="البريد الإلكتروني"
           textContentType="emailAddress"
         />
         <FormField
@@ -55,12 +57,17 @@ function LoginScreen(props) {
           autoCorrect={false}
           icon="lock"
           name="password"
-          placeholder="Password"
+          placeholder="كلمة المرور"
           secureTextEntry
           textContentType="password"
         />
         <SubmitButton title="Login" />
       </Form>
+      <TouchableOpacity onPress={() => navigation.navigate(routes.FORGETPASS)}>
+        <AppText>
+          نسيت كلمة المرور
+        </AppText>
+      </TouchableOpacity >
     </Screen>
   );
 }

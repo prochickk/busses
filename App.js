@@ -12,9 +12,6 @@ import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import { navigationRef } from "./app/navigation/rootNavigation";
 
-
-// import logger from "./app/utility/logger";
-// logger.start();
 SplashScreen.preventAutoHideAsync()
 export default function App() {
   const [user, setUser] = useState();
@@ -29,8 +26,6 @@ export default function App() {
     restoreUser();
     setIsReady(true);
     SplashScreen.hideAsync();
-    //setIsReady(true)
-    //<AppLoading startAsync={restoreUser} onFinish={() => setIsReady(true)} />
     }
 
   return (

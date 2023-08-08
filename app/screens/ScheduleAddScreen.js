@@ -18,6 +18,7 @@ import timesApi from '../api/times';
 import useApi from "../hooks/useApi";
 import AuthContext from "../auth/context";
 import AppButton from "../components/Button";
+import CategoryPickerItemAddress from "../components/CategoryPickerItemAddress";
 
 const validationSchema = Yup.object().shape({
   typeCate: Yup.object().required().nullable().label("نوع الرحلة"),
@@ -183,14 +184,14 @@ function ScheduleAddScreen({ navigation }) {
               items={getAddressesApi.data}
               name="addressCate"
               numberOfColumns={1}
-              PickerItemComponent={CategoryPickerItem}
+              PickerItemComponent={CategoryPickerItemAddress}
               placeholder="الـعـنــوان"
               width="85%"
             />
           </View>
           <View style={{flex:1}}/>
           <AppButton width="30%" title={"إضافة موقع"} height={50}
-          onPress={() => {navigation.navigate( routes.ADDRESS), console.log("addressesssss ScheduleAddScreen",getAddressesApi.data),getAddressesApi.request({...user})}}/>
+          onPress={() => {navigation.navigate( routes.ADDRESS), getAddressesApi.request({...user})}}/>
         </View>
 
         <SubmitButton title="إرسـال الرحـلـة للـجـدول " />

@@ -24,6 +24,46 @@ const settings = {
 //   },
 // };
 
+
+// Adeer tower
+// const settings = {
+//   dev: {
+//     apiUrl: "http://172.16.1.111:9000/api",
+//   },
+//   staging: {
+//     apiUrl: "http://172.16.1.111:9000/api",
+//   },
+//   prod: {
+//     apiUrl: "http://172.16.1.111:9000/api",
+//   },
+// };
+
+// Adeer tower Ethernet
+// const settings = {
+//   dev: {
+//     apiUrl: "http://172.16.1.83:9000/api",
+//   },
+//   staging: {
+//     apiUrl: "http://172.16.1.83:9000/api",
+//   },
+//   prod: {
+//     apiUrl: "http://172.16.1.83:9000/api",
+//   },
+// };
+
+//My Iphone
+// const settings = {
+//   dev: {
+//     apiUrl: "http://172.20.10.8:9000/api",
+//   },
+//   staging: {
+//     apiUrl: "http://172.20.10.8:9000/api",
+//   },
+//   prod: {
+//     apiUrl: "http://172.20.10.8:9000/api",
+//   },
+// };
+
 const getCurrentSettings = () => {
   if (__DEV__) return settings.dev;
   if (Constants.manifest.releaseChannel === "staging") return settings.staging;

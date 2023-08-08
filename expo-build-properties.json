@@ -1,0 +1,6 @@
+{
+    "ios": {
+      "minimumDeploymentTarget": "12.0"
+    }
+  }
+  

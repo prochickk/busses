@@ -10,5 +10,6 @@ export default Object.freeze({
   ADDRESS: "Address",
   ADDRESS_ADD: "AddressAdd",
   MAPVIEW: "MapView",
-
+  FORGETPASS: "ForgetPassword",
+  RESETPASSWORD: 'ResetPassword',
 });
