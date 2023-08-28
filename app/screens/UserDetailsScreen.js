@@ -7,14 +7,17 @@ import {
   Keyboard,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from "react-native";
 
 
 import colors from "../config/colors";
 import ListItem from "../components/lists/ListItem";
 import Screen from "../components/Screen";
+import AppText from "../components/Text";
+import routes from "../navigation/routes";
 
-function UserDetailsScreen({ route }) {
+function UserDetailsScreen({ navigation, route }) {
   const user = route.params;
 
   return (
@@ -46,6 +49,11 @@ function UserDetailsScreen({ route }) {
               title="شـركة التـوصيل"
               subTitle= {user.group}
             />
+            <TouchableOpacity onPress={() => navigation.navigate(routes.USER_DELETE)}>
+              <AppText>
+                حذف الحساب
+              </AppText>
+            </TouchableOpacity >
             <View style={{alignItems: 'center'}}>
               <Image
               style={styles.image}

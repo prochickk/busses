@@ -41,13 +41,13 @@ const settings = {
 // Adeer tower Ethernet
 // const settings = {
 //   dev: {
-//     apiUrl: "http://172.16.1.83:9000/api",
+//     apiUrl: "http://172.16.1.118:9000/api",
 //   },
 //   staging: {
-//     apiUrl: "http://172.16.1.83:9000/api",
+//     apiUrl: "http://172.16.1.118:9000/api",
 //   },
 //   prod: {
-//     apiUrl: "http://172.16.1.83:9000/api",
+//     apiUrl: "http://172.16.1.118:9000/api",
 //   },
 // };
 

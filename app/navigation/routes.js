@@ -12,4 +12,5 @@ export default Object.freeze({
   MAPVIEW: "MapView",
   FORGETPASS: "ForgetPassword",
   RESETPASSWORD: 'ResetPassword',
+  USER_DELETE: 'UserDeleteScreen',
 });

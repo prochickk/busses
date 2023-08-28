@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.16",
+    "version": "1.0.17",
     "orientation": "portrait",
     "icon": "./app/assets/icon.png",
     "userInterfaceStyle": "light",
@@ -29,16 +29,17 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.engahmed.hafel",
       "infoPlist": {
-        "NSLocationAlwaysUsageDescription": "Hafel uses the Precise Location to help in managing the trips and serving the user to his address when he make a request"
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Hafel uses the Precise Location to help in managing the trips and serving the user to his address when he make a request",
+        "NSLocationWhenInUseUsageDescription": "Hafel uses the Precise Location to help in managing the trips and serving the user to his address when he make a request"
       },
-      "buildNumber": "1.0.16",
+      "buildNumber": "1.0.17",
       "config": {
         "googleMapsApiKey": "AIzaSyAcOEZcjXVDRZl0UTAXa3ViXfXjnXi3_uE"
       }
     },
     "android": {
       "package": "com.codewithahmed.hafel",
-      "versionCode": 8,
+      "versionCode": 17,
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBfnWXxm0Cgfp8b0aJBTBDeqhTgXujT6CY"

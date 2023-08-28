@@ -7,6 +7,8 @@ import Icon from "../components/Icon";
 import routes from "../navigation/routes";
 import Screen from "../components/Screen";
 import useAuth from "../auth/useAuth";
+import { TouchableOpacity } from "react-native";
+import AppText from "../components/Text";
 
 const menuItems = [
   {
@@ -64,6 +66,7 @@ function AccountScreen({ navigation }) {
         IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
         onPress={() => logOut()}
       />
+
     </Screen>
   );
 }

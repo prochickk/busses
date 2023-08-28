@@ -6,6 +6,8 @@ import MapViewScreen from "../screens/MapViewScreen";
 import AddressAddScreen from "../screens/AddressAddScreen";
 import UserDetailsScreen from "../screens/UserDetailsScreen";
 import AdminContactScreen from "../screens/AdminContactScreen";
+import UserDeleteScreen from "../screens/UserDeleteScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +17,8 @@ const AccountNavigator = () => (
        options={{title: "الــحــســاب الشـخـصـي", headerTitleStyle: { fontSize: 25}}}/>
     <Stack.Screen name="UserDetails" component={UserDetailsScreen}
        options={{title: "المـلـف الشـخـصـي", headerTitleStyle: { fontSize: 25}}} />
+    <Stack.Screen name="UserDeleteScreen" component={UserDeleteScreen}
+       options={{title: "حذف الحساب", headerTitleStyle: { fontSize: 25}}}/>
     <Stack.Screen name="AdminContact" component={AdminContactScreen}
      options={{title:"تواصل مع المشرف", headerTitleStyle: { fontSize: 25}}}/>
     <Stack.Screen name="Address" component={AddressScreen} 
