@@ -1,28 +1,29 @@
 import Constants from "expo-constants";
 
-const settings = {
-  dev: {
-    apiUrl: "https://hafel.onrender.com/api",
-  },
-  staging: {
-    apiUrl: "https://hafel.onrender.com/api",
-  },
-  prod: {
-    apiUrl: "https://hafel.onrender.com/api",
-  },
-};
-
 // const settings = {
 //   dev: {
-//     apiUrl: "http://192.168.43.236:9000/api",
+//     apiUrl: "https://hafel.onrender.com/api",
 //   },
 //   staging: {
-//     apiUrl: "http://192.168.43.236:9000/api",
+//     apiUrl: "https://hafel.onrender.com/api",
 //   },
 //   prod: {
-//     apiUrl: "http://192.168.43.236:9000/api",
+//     apiUrl: "https://hafel.onrender.com/api",
 //   },
 // };
+
+// AlJalsa
+const settings = {
+  dev: {
+    apiUrl: "http://192.168.1.223:9000/api",
+  },
+  staging: {
+    apiUrl: "http://192.168.1.223:9000/api",
+  },
+  prod: {
+    apiUrl: "http://192.168.1.223:9000/api",
+  },
+};
 
 
 // Adeer tower

@@ -6,8 +6,7 @@ import Screen from '../components/Screen';
 import useLocation from '../hooks/useLocation';
 import AppButton from '../components/Button';
 import routes from '../navigation/routes';
-import IconButton from '../components/IconButton';
-import { Alert } from 'react-native';
+
 
 
 function MapViewScreen({ navigation }) {
