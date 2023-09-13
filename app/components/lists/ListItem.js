@@ -26,7 +26,7 @@ function ListItem({
           name={iconName}
           size={40}
         />}
-          {image && <Image style={styles.image} source={image} />}
+            {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
             <Text style={styles.title} numberOfLines={1}>
               {title}
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     flex: 1,
+
     marginLeft: 10,
     justifyContent: "center",
   },

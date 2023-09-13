@@ -13,17 +13,17 @@ import Constants from "expo-constants";
 // };
 
 // AlJalsa
-const settings = {
-  dev: {
-    apiUrl: "http://192.168.1.223:9000/api",
-  },
-  staging: {
-    apiUrl: "http://192.168.1.223:9000/api",
-  },
-  prod: {
-    apiUrl: "http://192.168.1.223:9000/api",
-  },
-};
+// const settings = {
+//   dev: {
+//     apiUrl: "http://192.168.1.223:9000/api",
+//   },
+//   staging: {
+//     apiUrl: "http://192.168.1.223:9000/api",
+//   },
+//   prod: {
+//     apiUrl: "http://192.168.1.223:9000/api",
+//   },
+// };
 
 
 // Adeer tower
@@ -40,17 +40,17 @@ const settings = {
 // };
 
 // Adeer tower Ethernet
-// const settings = {
-//   dev: {
-//     apiUrl: "http://172.16.1.118:9000/api",
-//   },
-//   staging: {
-//     apiUrl: "http://172.16.1.118:9000/api",
-//   },
-//   prod: {
-//     apiUrl: "http://172.16.1.118:9000/api",
-//   },
-// };
+const settings = {
+  dev: {
+    apiUrl: "http://172.16.1.151:9000/api",
+  },
+  staging: {
+    apiUrl: "http://172.16.1.151:9000/api",
+  },
+  prod: {
+    apiUrl: "http://172.16.1.151:9000/api",
+  },
+};
 
 //My Iphone
 // const settings = {

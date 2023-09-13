@@ -16,7 +16,6 @@ import routes from '../navigation/routes';
 import AuthContext from "../auth/context";
 import regionsApi from "../api/regions"
 import useApi from "../hooks/useApi";
-import AppText from "../components/Text";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(1).label("Name"),
@@ -35,7 +34,8 @@ function AddressAddScreen({ navigation, route }) {
   }, []);
 
   const handleSubmit = async (address, { resetForm }) => {
-    console.log("getRegionsApi.data", getRegionsApi.data)
+    console.log('getRegionsApi', getRegionsApi)
+
     setProgress(0);
     setUploadVisible(true);
     const result = await addressesApi.addAddress(
@@ -81,6 +81,7 @@ function AddressAddScreen({ navigation, route }) {
           PickerItemComponent={CategoryPickerItem}
           placeholder="أقرب منصطقة لموقعك"
           width="80%"
+
         />
         <View style={{alignItems: "center", flexDirection: "row"}}>
           <SubmitButton title="حــفــظ"/>
@@ -94,7 +95,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     alignItems: "flex-end",
-
   },
 });
 export default AddressAddScreen;

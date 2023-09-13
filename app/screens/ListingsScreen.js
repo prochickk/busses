@@ -73,7 +73,7 @@ function ListingsScreen({ navigation }) {
               name="goBackItem"
               numberOfColumns={1}
               PickerItemComponent={CategoryPickerItem}
-              placeholder="أقرب منصطقة لموقعك"
+              placeholder="أقرب منطقة لموقعك"
               onSelectItem={(item) => {setTextDay(item.label) ,setDay(item.label)}}
               />
             { {textDay} && <View style={styles.Days}>

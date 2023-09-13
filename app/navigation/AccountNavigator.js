@@ -8,6 +8,9 @@ import UserDetailsScreen from "../screens/UserDetailsScreen";
 import AdminContactScreen from "../screens/AdminContactScreen";
 import UserDeleteScreen from "../screens/UserDeleteScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import GroupFilteringScreen from "../screens/GroupFilteringScreen";
+import GroupsListScreen from "../screens/GroupsListScreen";
+import SubscriptionsScreen from "../screens/SubscriptionsScreen";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +30,12 @@ const AccountNavigator = () => (
        options={{title: "إضـافـة مـوقـع", headerTitleStyle: { fontSize: 25}}}/>
     <Stack.Screen name="MapView" component={MapViewScreen}
       options={{headerShown: false}}/>
+    <Stack.Screen name="Subscriptions" component={SubscriptionsScreen}
+      options={{title: "الاشتراك", headerTitleStyle: { fontSize: 25}}}/>
+   <Stack.Screen name="GroupFiltering" component={GroupFilteringScreen}
+      options={{title: "تحديد المنطقة", headerTitleStyle: { fontSize: 25}}}/>
+    <Stack.Screen name="GroupsList" component={GroupsListScreen}
+      options={{title: "اختيار شركة التوصيل", headerTitleStyle: { fontSize: 25}}}/>
   </Stack.Navigator>
 );
 

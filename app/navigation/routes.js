@@ -5,6 +5,8 @@ export default Object.freeze({
   LOGIN: "Login",
   ADMIN_CONTACT: "AdminContact",
   REGISTER: "Register",
+  GROUPFILTERING: "GroupFiltering",
+  GROUPSLIST: "GroupsList",
   SCHEDULE: "Schedule",
   SCHEDULE_ADD: "ScheduleAdd",
   ADDRESS: "Address",
@@ -13,4 +15,6 @@ export default Object.freeze({
   FORGETPASS: "ForgetPassword",
   RESETPASSWORD: 'ResetPassword',
   USER_DELETE: 'UserDeleteScreen',
+  GROUPDETAILS: 'GroupDetails',
+  SUBSCRIPTIONS: 'Subscriptions',
 });

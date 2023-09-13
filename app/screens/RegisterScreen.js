@@ -17,30 +17,41 @@ import colors from "../config/colors";
 import useApi from "../hooks/useApi";
 import ActivityIndicator from "../components/ActivityIndicator";
 import regionsApi from "../api/regions"
+import routes from "../navigation/routes";
+import RegisterationRoadMap from "../components/RegisterationRoadMap";
+import { View } from "react-native";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   mobileNumber: Yup.string().required().min(10).max(10).label("MobileNumber"),
-  groupCate: Yup.object().required().nullable().label("مجموعة التوصيل"),
-
 });
 
 
-function RegisterScreen() {
+function RegisterScreen({ navigation, route }) {
   const registerApi = useApi(usersApi.register);
   const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
-  
-  const getRegionsApi = useApi(regionsApi.getRegions)
-  const driver = {group: "New"};
-  useEffect(() => {
-    getRegionsApi.request(driver);
-  }, []);
 
+  const [currentStep, setCurrentStep] = useState(2);
+
+  const handleStepPress = (stepIndex) => {
+    setCurrentStep(stepIndex);
+    if (stepIndex == 0) {
+      setCurrentStep(stepIndex);
+      navigation.navigate(routes.GROUPFILTERING)
+    }
+    if (stepIndex == 1) {
+      navigation.navigate(routes.GROUPSLIST)
+    } else {
+      setCurrentStep(2);
+    }
+  };
+  
   const handleSubmit = async (userInfo) => {
+    userInfo.groupCate = route.params.groupList
     const result = await registerApi.request(userInfo);
 
     if (!result.ok) {
@@ -62,13 +73,17 @@ function RegisterScreen() {
   return (
     <>
       <ActivityIndicator visible={registerApi.loading || loginApi.loading} />
+
+      <View>
+        <RegisterationRoadMap currentStep={currentStep} onPressStep={handleStepPress} />
+        </View>
+
       <Screen style={styles.container}>
         <Form
           initialValues={{
             name: "",
             email: "",
             password: "",
-            groupCate: null,
             mobileNumber: ""
           }}
           onSubmit={handleSubmit}
@@ -98,14 +113,6 @@ function RegisterScreen() {
             name="mobileNumber"
             placeholder="رقم الهاتف (الواتس اب)"
           />
-          <Picker
-          items={getRegionsApi.data}
-          name="groupCate"
-          numberOfColumns={1}
-          PickerItemComponent={CategoryPickerItem}
-          placeholder="مجموعة التوصيل"
-          width="80%"
-        />
           <FormField
             autoCapitalize="none"
             autoCorrect={false}

@@ -9,8 +9,8 @@ export const register = (userInfo) => {
     data.append("name", userInfo.name)
     data.append("email", userInfo.email)
     data.append("mobileNumber", userInfo.mobileNumber)
-    data.append("groupCateLabel", userInfo.groupCate.groupList)
+    data.append("groupCateLabel", userInfo.groupCate)
     data.append("password", userInfo.password)
-    return client.post(endpoint, data);}
+    return client.post(endpoint, data)}
 
 export default { register, getUser};

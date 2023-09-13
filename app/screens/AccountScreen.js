@@ -12,6 +12,14 @@ import AppText from "../components/Text";
 
 const menuItems = [
   {
+    title: "الاشتراك",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.secondary,
+    },
+    targetScreen: routes.SUBSCRIPTIONS,
+  },
+  {
     title: "العناوين",
     icon: {
       name: "format-list-bulleted",
@@ -56,7 +64,7 @@ function AccountScreen({ navigation }) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
-              onPress={() => navigation.navigate(item.targetScreen)}
+              onPress={() => navigation.navigate(item.targetScreen, user)}
             />
           )}
         />

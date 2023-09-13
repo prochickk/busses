@@ -2,7 +2,6 @@ import React from "react";
 import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
 
 import Button from "../components/Button";
-import AppText from "../components/Text";
 import routes from "../navigation/routes";
 
 function WelcomeScreen({ navigation }) {
@@ -23,7 +22,7 @@ function WelcomeScreen({ navigation }) {
         <Button
           title="تسجيل جديد"
           color="secondary"
-          onPress={() => navigation.navigate(routes.REGISTER)}
+          onPress={() => navigation.navigate(routes.GROUPFILTERING)}
         />
       </View>
     </ImageBackground>
