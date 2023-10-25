@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, Button, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import AppButton from '../components/Button';
 import Screen from '../components/Screen';
 import AppText from '../components/Text';
@@ -63,8 +63,8 @@ function ScheduleScreen( {navigation} ) {
         <ActivityIndicator visible={getSchedulesApi.loading} />
           {getSchedulesApi.error && (
             <>
-              <AppText>Couldn't retrieve the listings.</AppText>
-              <Button title="Retry" onPress={() => getSchedulesApi.request({...user})} />
+              <AppText>لم يتم تحميل الخيارات</AppText>
+              <AppButton title="إعادة المحاولة" onPress={() => getSchedulesApi.request({...user})} />
             </>
               )}
         <View style={styles.AddDeleteBtns}>

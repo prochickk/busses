@@ -1,16 +1,8 @@
 import client from "./client";
 
-const endpoint = "/subscriptions";
+const endpoint = "/payment";
 
-const getSubs = (user) => {
-    return client.get(endpoint + 
-        "?userId=" + user.userId, {
-            onUploadProgress: (progress) =>
-              onUploadProgress(progress.loaded / progress.total),
-          });
-  }; 
-  
-export const addSub = (subDetails, locations, user) => {
+export const paymentIntent = (subDetails, locations, user) => {
 const data = new FormData();
 data.append("group", subDetails.groupList);
 data.append("userId", user.userId);
@@ -21,11 +13,10 @@ data.append("university", locations.params.universities.university);
 data.append("section", locations.params.sections.section);
 data.append("region", locations.params.regions.name);
 
-return client.post(endpoint, data);
+return client.post(endpoint + '/intents', data);
 }; 
   
 
 export default {
-    getSubs,
-    addSub,
+    paymentIntent,
   };

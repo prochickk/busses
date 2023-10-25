@@ -85,8 +85,8 @@ function ListingsScreen({ navigation }) {
 
         {getListingsApi.error && (
           <>
-            <AppText>Couldn't retrieve the listings.</AppText>
-            <Button title="Retry" onPress={() => getListingsApi.request([day ,{...user}])} />
+            <AppText>لم يتم تحميل الخيارات</AppText>
+            <Button title="إعادة المحاولة" onPress={() => getListingsApi.request([day ,{...user}])} />
           </>
         )}
         

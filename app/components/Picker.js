@@ -40,10 +40,14 @@ function AppPicker({
           )}
           {selectedItem ? ( 
             selectedItem.label ?
-              <Text style={styles.text}>{selectedItem.label}</Text> : ( 
-              selectedItem.name ? 
-              <Text style={styles.text}>{selectedItem.name}</Text> :
-              <Text style={styles.text}>{selectedItem.value}</Text>
+              <Text style={styles.text}>{selectedItem.label}</Text> : ( selectedItem.name ? 
+              <Text style={styles.text}>{selectedItem.name}</Text> : ( selectedItem.value ? 
+              <Text style={styles.text}>{selectedItem.value}</Text> : ( selectedItem.section ? 
+              <Text style={styles.text}>{selectedItem.section}</Text> : ( selectedItem.university ?
+              <Text style={styles.text}>{selectedItem.university}</Text> :
+              <Text style={styles.text}>{selectedItem.region}</Text> 
+                ) 
+              ) )
             )
           ) : (
             <Text style={styles.placeholder}>{placeholder}</Text>
@@ -86,10 +90,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
-    height: 55,
-    padding: 15,
+    height: 50,
+    width: '100',
+    padding: 10,
     marginVertical: 10,
     flexDirection: "row-reverse",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   closeBtn: {
      width: "90%",
@@ -107,6 +114,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    color: defaultStyles.colors.black,
   },
 });
 

@@ -22,14 +22,13 @@ import CardSubsList from "../components/CardSubsList";
 function SubscriptionsScreen({ navigation, route }) {
   const user = route.params;
   const [subscriptionsData, setSubscriptionsData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
 
   
   const getSubscriptionsApi = useApi(subscriptionsApi.getSubs);
 
-//   useEffect(() => {
-//     getSubscriptionsApi.request(user)
-//   }, []);
-
+// to use the subs as an object in the items list
 useEffect(() => {
     const fetchData = async () => {
       const result = await getSubscriptionsApi.request(user);
@@ -42,8 +41,6 @@ useEffect(() => {
   }, []);
 
     const currentDate = new Date();
-    console.log('currentDate', currentDate)
-
   return (
     <Screen style={styles.Screen}>  
         <ActivityIndicator visible={getSubscriptionsApi.loading} />
@@ -58,7 +55,7 @@ useEffect(() => {
             <ListItem
             iconName={"account"}
             title="حالة الاشتراك"
-            subTitle={subscriptionsData.length > 0 ? (new Date(subscriptionsData[0].expiredAt) > currentDate ? 'نشط' : "منتهي") : ''}
+            subTitle={subscriptionsData.length > 0 ? (new Date(subscriptionsData[0].expiredAt) > currentDate ? 'نشط' : "معطل") : ''}
           />
             <ListItem
             iconName={"account"}
@@ -79,7 +76,7 @@ useEffect(() => {
         <View style={ styles.btn }>
             <AppButton
                 height= {40}
-                title="تجديد الاشتراك"
+                title="اشتراك جديد"
                 onPress={() => navigation.navigate(routes.GROUPFILTERING, user)}
                 />
         </View>
@@ -91,21 +88,23 @@ useEffect(() => {
         {getSubscriptionsApi.error && (
         <>
             <AppText>Couldn't retrieve the listings.</AppText>
-            <AppButton title="Retry" onPress={() => getSubscriptionsApi.request(route.params)} />
+            <AppButton title="Retry" onPress={() => getSubscriptionsApi.request(user)} />
         </>
         )}
         <FlatList
         data={getSubscriptionsApi.data}
         keyExtractor={(item) => item.subId.toString()}
         renderItem={({ item }) => (
-            <CardSubsList
-            groupCo={item.group}
-            priceValue= {item.price}
-            createDate = {item.createdAt.slice(0, 10)}
-            expireDate = {item.expiredAt.slice(0, 10)}
-            // infoBtn={() => { navigation.navigate(routes.GROUPDETAILS, item) }}
-                />
-                )} 
+          <CardSubsList
+          groupCo={item.group}
+          priceValue= {item.price}
+          createDate = {item.createdAt.slice(0, 10)}
+          expireDate = {item.expiredAt.slice(0, 10)}
+          // infoBtn={() => { navigation.navigate(routes.GROUPDETAILS, item) }}
+              />
+              )} 
+          refreshing={refreshing}
+          onRefresh={() => getSubscriptionsApi.request(user)}
         />
         </View>
     </Screen> 

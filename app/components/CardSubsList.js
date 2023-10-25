@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   subTitle: {
-    color: '#FB9B06',
+    color: colors.secondary,
     fontWeight: "bold",
     fontSize: 15,
     margin:5
