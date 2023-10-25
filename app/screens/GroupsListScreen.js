@@ -15,13 +15,67 @@ import routes from "../navigation/routes";
 import RegisterationRoadMap from "../components/RegisterationRoadMap";
 import useAuth from "../auth/useAuth";
 
+import subscriptionsApi from "../api/subscriptions";
+import paymentApi from "../api/payment";
+
+import { StripeProvider, useStripe, PlatformPayButton, PlatformPay, usePlatformPay } from "@stripe/stripe-react-native";
 
 
 function GroupsListScreen({ navigation, route}) {
 
+  const STRIPE_KEY = 'pk_test_51NrbWrFH3G8J5UHm77SyP8mN89LwSLev8QIWc7HVx8PPLVzdmUzmYb5sZpfeprcYcLOLEtUKheliYvXb1bbGVNUr00Yi0h9ZGv'
+
   const getGroupsPricesApi = useApi(groupsPricesApi.getPrices);
   const [currentStep, setCurrentStep] = useState(1);
   const { user } = useAuth();
+
+  const {initPaymentSheet, presentPaymentSheet} = useStripe();
+
+  const onCheckout = async (item) => {
+    
+      try {
+    // 1. Create a payment intent
+    const intent = await paymentApi.paymentIntent(item, route, user);
+    if (intent.error) {
+      Alert.alert('حدث خطأ');
+      return;
+    }
+      // 2. Initialize the Payment sheet
+      const initResponse = await initPaymentSheet({
+        merchantDisplayName: 'hwafel',
+        paymentIntentClientSecret: intent.data.paymentIntent,
+        defaultBillingDetails: {
+          address: {
+            country: 'SA',
+          },
+        },
+        // applePay: {
+        //   merchantCountryCode: 'SA',
+        // },
+        // googlePay: {
+        //   merchantCountryCode: 'SA',
+        //   testEnv: true, 
+        // }
+      });
+  
+      // 3. Present the Payment Sheet from Stripe
+      const { error: paymentError } = await presentPaymentSheet();
+
+      if (paymentError) {
+        Alert.alert(`Error code: ${paymentError.code}`, paymentError.message);
+        return;
+
+      } else {
+        // 4. If payment succeeded, create the order
+        await subscriptionsApi.addSub(item, route, user);
+        navigation.navigate(routes.SUBSCRIPTIONS, user);
+      }
+
+    } catch (error) {
+      console.log(error);
+      Alert.alert('حدث خطأ');
+    }
+  };
 
   const handleStepPress = (stepIndex) => {
     setCurrentStep(stepIndex);
@@ -41,40 +95,53 @@ function GroupsListScreen({ navigation, route}) {
     getGroupsPricesApi.request(route.params)
   }, []);
 
+  const handleAddCo = (item) => {
+    
+    item.groupList === 'غير متوفر'? true : 
+    (user ? onCheckout(item) :
+     navigation.navigate(routes.REGISTER, item))
+
+  }
+
   return (
     <>
       <ActivityIndicator visible={getGroupsPricesApi.loading} />
         <View>
-        <RegisterationRoadMap currentStep={currentStep} onPressStep={handleStepPress} regPostition={user} />
+          <RegisterationRoadMap currentStep={currentStep} onPressStep={handleStepPress} regPostition={user} />
         </View>
-        <Screen style={styles.screen}>
 
-          <AppText style={styles.title}>شركات التوصيل المتوفرة</AppText>
+        <StripeProvider 
+          publishableKey={STRIPE_KEY} 
+          merchantIdentifier="merchant.com.engahmed.hafel" 
+          >
+          <Screen style={styles.screen}>
+            <AppText style={styles.title}>شركات التوصيل المتوفرة</AppText>
 
-        {getGroupsPricesApi.error && (
-          <>
-            <AppText>Couldn't retrieve the listings.</AppText>
-            <Button title="Retry" onPress={() => getGroupsPricesApi.request(route.params)} />
-          </>
-        )}
-        
-        <FlatList
-          data={getGroupsPricesApi.data}
-          keyExtractor={(listing) => listing.id.toString()}
-          renderItem={({ item }) => (
-            <CardPricingList
+          {getGroupsPricesApi.error && ( 
+            <>
+              <AppText>لم يتم تحميل الخيارات</AppText>
+              <Button title="إعادة المحاولة" onPress={() => getGroupsPricesApi.request(route.params)} />
+            </>
+          )}
+          
+          <FlatList
+            data={getGroupsPricesApi.data}
+            keyExtractor={(listing) => listing.id.toString()}
+            renderItem={({ item }) => (
+              <CardPricingList
               dayCate={item.groupList}
               priceValue= {item.monthlyPrice}
               features = {item.features}
               addBtn={() => {Alert.alert(alertText, bodyText + item.groupList, [
-                {text: "نعم", onPress: () => item.groupList === 'غير متوفر'? true : (user ? console.log('build your payment screen') : navigation.navigate(routes.REGISTER, item))},
-                  {text: "لا"}])
-                    }}
+                {text: "نعم", onPress: () => handleAddCo(item)},
+                {text: "لا"}])
+              }}
               infoBtn={() => { item.groupList === 'غير متوفر'? true : navigation.navigate(routes.GROUPDETAILS, item) }}
-                />
-                )}
-          />
-      </Screen>
+              />
+              )}
+              />
+        </Screen>
+      </StripeProvider>
     </>
   );
 }
